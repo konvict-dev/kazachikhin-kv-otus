@@ -1,0 +1,23 @@
+{
+  "name": "kazachikhin-kv-otus",
+  "version": "1.0.0",
+  "description": "homework",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/konvict-dev/kazachikhin-kv-otus.git"
+  },
+  "author": "kazachikhin kv",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/konvict-dev/kazachikhin-kv-otus/issues"
+  },
+  "homepage": "https://github.com/konvict-dev/kazachikhin-kv-otus#readme",
+  "dependencies": {
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4"
+  }
+}
