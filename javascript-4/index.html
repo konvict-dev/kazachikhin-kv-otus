@@ -3,60 +3,13 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>JS4 (homework)</title>
+    <script type="text/javascript" src="main.js"></script>
 </head>
 <body>
     <div id="title"><h3>Custom Elements Tree</h3></div>
-    <div id="container" style="margin-left: -15px;"></div>
+    <div id="container">
+        <my-tree data="{ 'id': 1, 'items': [{ 'id': 2, 'items': [{ 'id': 3 }] }, { 'id': 4, 'items': [{ 'id': 5 }, { 'id': 6 }] }] }"></my-tree>
+    </div>
 
-    <script type="text/javascript">
-        let json = '{ "id": 1, "items": [{ "id": 2, "items": [{ "id": 3 }] }, { "id": 4, "items": [{ "id": 5 }] }] }';
-        //---
-        function CreateMarker(tagName, id) {
-            let tag = tagName.toLowerCase();
-            let span = document.createElement('p');
-            span.textContent = tag + ' (' + id + ')';
-            let style = "color:white; padding: 1px 3px 2px 3px; margin: 0; display: block; position:relative; width:84px; text-align:center; border-radius: 4px;";
-            if (tag === 'my-tree') style += " background-color:darkred;";
-            else style += " background-color:green;";
-            span.setAttribute("style", style);
-            return span;
-        }
-        //---
-        class MyLeaf extends HTMLElement{
-            constructor(data) {
-                super();
-                this.setAttribute("style", "margin: 2px 15px; padding: 0; display: block; position:relative;");
-                this.appendChild(CreateMarker(this.tagName, data.id));
-                if (data.id) {
-                    this.id = (typeof data.id === "number" ? 'id-' : '') + data.id;
-                }
-            }
-        }
-        class MyTree extends HTMLElement{
-            constructor(data) {
-                super();
-                this.setAttribute("style", "margin: 2px 15px; padding: 0; display: block; position:relative;");
-                this.appendChild(CreateMarker(this.tagName, data.id));
-                if (data.items) {
-                    for(let item of data.items){
-                        if (item.items) this.appendChild(new MyTree(item));
-                        else this.appendChild(new MyLeaf(item));
-                    }
-                }
-                if (data.id) {
-                    this.id = (typeof data.id === "number" ? 'id-' : '') + data.id;
-                }
-            }
-        }
-        //---
-        customElements.define('my-leaf', MyLeaf);
-        customElements.define('my-tree', MyTree);
-        //---
-        const myTreeMain = new MyTree(JSON.parse(json));
-        const host = document.getElementById('container');
-        const shadowRoot = host.attachShadow({ mode: 'open'});
-        shadowRoot.appendChild(myTreeMain);
-
-    </script>
 </body>
 </html>
