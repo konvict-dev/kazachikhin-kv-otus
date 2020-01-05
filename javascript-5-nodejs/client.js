@@ -1,8 +1,16 @@
 /* --- Http Client --- */
 
+const program = require('commander');
+program
+    .option('-c, --count <number>', 'Количество запросов',  parseInt, 10)
+    .option('-t, --type <string>', 'Режим отправки запросов (sync || async)',  'sync')
+    .parse(process.argv);
+
 // --- config ---
-let n = 10; // количество запросов
-let type = 'async';  // 'sync' || 'async' - синхронный/асинхронный режим отправки запросов
+const n = program.count; // количество запросов
+const type = program.type;  // 'sync' || 'async' - синхронный/асинхронный режим отправки запросов
+
+console.log('n = ' + n + ', type = ' + type);
 
 // --- variables ---
 let timeAll = 0;
@@ -10,6 +18,7 @@ let countAsyncN = 0;
 
 // --- script ---
 const rp = require('request-promise');
+
 function request(number, type, maxNumber) {
     const n = number;
     const max = maxNumber;
@@ -46,6 +55,7 @@ function request(number, type, maxNumber) {
             }
         })
 }
+
 if (type === 'sync') request(1, 'sync', n);
 else {
     for(let i = 1; i <= n; i++){

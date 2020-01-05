@@ -4,7 +4,9 @@
   "description": "homework",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start_server": "node ./javascript-5-nodejs/server.js",
+    "start_cllent_sync": "node ./javascript-5-nodejs/client.js -c 10 -t sync",
+    "start_cllent_async": "node ./javascript-5-nodejs/client.js -c 10 -t async"
   },
   "repository": {
     "type": "git",
@@ -17,6 +19,7 @@
   },
   "homepage": "https://github.com/konvict-dev/kazachikhin-kv-otus#readme",
   "dependencies": {
+    "commander": "^4.0.1",
     "request": "^2.88.0",
     "request-promise": "^4.2.4"
   }

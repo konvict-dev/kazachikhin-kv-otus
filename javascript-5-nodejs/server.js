@@ -23,3 +23,5 @@ require('http').createServer((req, res) => {
     });
 
 }).listen(8081);
+
+console.log("Server is started (port 8081)");
